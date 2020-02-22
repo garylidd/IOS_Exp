@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: backward compatibility
+@available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
