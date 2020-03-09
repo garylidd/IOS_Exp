@@ -13,6 +13,7 @@
 		965997FD2401357C007010E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 965997FB2401357C007010E9 /* Main.storyboard */; };
 		965997FF2401357D007010E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 965997FE2401357D007010E9 /* Assets.xcassets */; };
 		965998022401357D007010E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 965998002401357D007010E9 /* LaunchScreen.storyboard */; };
+		96666A8024155C5E00949006 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96666A7F24155C5E00949006 /* Concentration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		965997FE2401357D007010E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		965998012401357D007010E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		965998032401357D007010E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96666A7F24155C5E00949006 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				965997F72401357C007010E9 /* SceneDelegate.swift */,
 				965997F92401357C007010E9 /* ViewController.swift */,
 				965997FB2401357C007010E9 /* Main.storyboard */,
+				96666A7F24155C5E00949006 /* Concentration.swift */,
 				965997FE2401357D007010E9 /* Assets.xcassets */,
 				965998002401357D007010E9 /* LaunchScreen.storyboard */,
 				965998032401357D007010E9 /* Info.plist */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				965997FA2401357C007010E9 /* ViewController.swift in Sources */,
+				96666A8024155C5E00949006 /* Concentration.swift in Sources */,
 				965997F62401357C007010E9 /* AppDelegate.swift in Sources */,
 				965997F82401357C007010E9 /* SceneDelegate.swift in Sources */,
 			);
