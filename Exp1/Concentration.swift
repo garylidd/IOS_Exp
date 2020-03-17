@@ -8,14 +8,22 @@
 
 import Foundation
 
-struct Card
+struct Card: Hashable
 {
     var isFaceUp = false
     var isMatched = false
-    var UID: Int
+    private var UID: Int
     
-    static var UIDGenerator = -1
-    static func getUID() -> Int {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(UID)
+    }
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.UID == rhs.UID
+    }
+    
+    static private var UIDGenerator = -1
+    static private func getUID() -> Int {
         UIDGenerator += 1
         return UIDGenerator
     }
@@ -26,39 +34,51 @@ struct Card
     }
 }
 
-class Concentration
+struct Concentration
 {
-    var cards = [Card]()
+    private(set) var cards = [Card]()
     
-    var indexOfFaceUpCard: Int?
+    private var indexOfFaceUpCard: Int? {
+        get {
+            return cards.indices.filter{cards[$0].isFaceUp}.oneAndOnly
+        }
+        set {
+            for index in cards.indices {
+                cards[index].isFaceUp = (index == newValue)
+            }
+        }
+    }
     
-    func chooseCard(at index: Int)
+    mutating func chooseCard(at index: Int)
     {
+        assert(cards.indices.contains(index), "Concentration.chooseCard(at:\(index)): cards indices don't contain this index")
         if !cards[index].isMatched
         {
             if let matchIndex = indexOfFaceUpCard, matchIndex != index {
-                if cards[matchIndex].UID == cards[index].UID {
+                if cards[matchIndex] == cards[index] {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
                 }
                 cards[index].isFaceUp = true
-                indexOfFaceUpCard = nil
             } else {
-                for flipDownIndex in cards.indices{
-                    cards[flipDownIndex].isFaceUp = false
-                }
-                cards[index].isFaceUp = true
                 indexOfFaceUpCard = index
             }
         }
     }
     
     init(numberOfCardPaires: Int){
+        assert(numberOfCardPaires > 0, "Concentration.init(numberOfCardPairs:\(numberOfCardPaires)):number of card pairs should be more than zero")
         for _ in 0..<numberOfCardPaires{
             let card = Card()
             cards += [card, card]
         }
         
         cards.shuffle()
+    }
+}
+
+extension Collection {
+    var oneAndOnly: Element? {
+        return count == 1 ? first : nil
     }
 }
