@@ -12,6 +12,7 @@ struct Card
 {
     var isFaceUp = false
     var isMatched = false
+    var isStateChange = false
     var UID: Int
     
     static var UIDGenerator = -1
@@ -36,18 +37,26 @@ class Concentration
     {
         if !cards[index].isMatched
         {
-            if let matchIndex = indexOfFaceUpCard, matchIndex != index {
-                if cards[matchIndex].UID == cards[index].UID {
-                    cards[matchIndex].isMatched = true
-                    cards[index].isMatched = true
-                }
-                cards[index].isFaceUp = true
-                indexOfFaceUpCard = nil
+            if let matchIndex = indexOfFaceUpCard {
+                if matchIndex != index {
+                    if cards[matchIndex].UID == cards[index].UID {
+                        cards[matchIndex].isMatched = true
+                        cards[matchIndex].isStateChange = true
+                        cards[index].isMatched = true
+                    }
+                    cards[index].isFaceUp = true
+                    cards[index].isStateChange = true
+                    indexOfFaceUpCard = nil
+                } 
             } else {
                 for flipDownIndex in cards.indices{
+                    if cards[flipDownIndex].isFaceUp {
+                        cards[flipDownIndex].isStateChange = true
+                    }
                     cards[flipDownIndex].isFaceUp = false
                 }
                 cards[index].isFaceUp = true
+                cards[index].isStateChange = true
                 indexOfFaceUpCard = index
             }
         }
